@@ -1,8 +1,8 @@
 How to read
 
-- Posts are Markdown files you can click to read.  
-- New stuff appears at the top of the list.  
-- Browse whatever catches your eye.
+- Click on a post to read it. 
+- Newest posts show up first.
+- Explore whatever interests you.
 
 ## Posts
 
