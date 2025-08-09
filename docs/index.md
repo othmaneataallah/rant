@@ -1,3 +1,7 @@
+---
+title: "rant"
+---
+
 ## How to read
 
 - Posts are Markdown files you can click to read.  
