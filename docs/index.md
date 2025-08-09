@@ -1,8 +1,4 @@
----
-title: "rant"
----
-
-## How to read
+How to read
 
 - Posts are Markdown files you can click to read.  
 - New stuff appears at the top of the list.  
