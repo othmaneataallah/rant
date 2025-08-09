@@ -1,3 +1,7 @@
+## rant
+
+Stuff I figured out about coding and tech. Read if you want.
+
 ## How to read
 
 - Posts are Markdown files you can click to read.  
