@@ -98,6 +98,62 @@ This mechanism is often conflated with sibling concepts:
 
 ---
 
+## A Concrete Example
+
+Consider a domain service requiring data persistence. 
+
+In a standard execution path, a `BillingService` (policy) imports and invokes a `SqlBillingRepository` (detail). The lexical dependency points downward. A structural change to the SQL library forces the `BillingService` module to update its imports or recompile.
+
+To invert this, the high-level module defines an abstract interface representing the persistence contract.
+
+```java
+// High-level boundary (Policy)
+package com.domain.billing;
+
+public interface BillingRepository {
+    void save(Invoice invoice);
+}
+
+public class BillingService {
+    private final BillingRepository repository;
+    
+    public BillingService(BillingRepository repository) {
+        this.repository = repository;
+    }
+    
+    public void process(Invoice invoice) {
+        // ... business logic ...
+        this.repository.save(invoice); // Control flows to the implementation
+    }
+}
+```
+
+Crucially, `BillingRepository` is lexically enveloped within the `com.domain.billing` package. It is owned by the policy boundary.
+
+The detail layer must then implement this contract. 
+
+```java
+// Low-level boundary (Detail)
+package com.infrastructure.database;
+
+import com.domain.billing.BillingRepository;
+import com.domain.billing.Invoice;
+
+public class JpaBillingRepository implements BillingRepository {
+    @Override
+    public void save(Invoice invoice) {
+        // ... ORM execution ...
+    }
+}
+```
+
+Observe the `import` statements in the infrastructure module. The detail layer explicitly imports the policy layer to satisfy the compiler. The source-code dependency points upward, in direct opposition to the downward flow of execution. 
+
+> **Note on Frameworks**  
+> In modern ecosystems (e.g., Spring Data JPA), the manual implementation class is often omitted. The framework dynamically generates a proxy at runtime that implements the `BillingRepository` interface. The architectural inversion remains identical: the framework (the detail) conforms to the structural contract defined entirely by the domain layer.
+
+---
+
 ## Purpose
 
 The primary utility of this structural constraint is bounding the propagation of module invalidation.
