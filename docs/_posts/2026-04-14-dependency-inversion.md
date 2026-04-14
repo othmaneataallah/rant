@@ -65,7 +65,9 @@ In a standard procedural codebase, high-level modules (policies) invoke low-leve
 
 The immediate consequence of this alignment is that modifying a low-level detail forces a recompilation or invalidation of the high-level policy, even if the policy invariants remain untouched.
 
-![Before Dependency Inversion Diagram]({{ "/assets/images/dip-before.png" | relative_url }})
+<p align="center">
+  <img src="{{ "/assets/images/dip-before.png" | relative_url }}" alt="Before Dependency Inversion Diagram" />
+</p>
 
 ---
 
@@ -94,7 +96,9 @@ This mechanism is often conflated with sibling concepts:
 | IoC | A behavioral pattern where framework code encapsulates the main execution loop, invoking user code via callbacks. It dictates who owns the execution context. |
 | DI | A parameter-passing technique where instantiated objects are provided to an environment rather than constructed within it. It is the runtime mechanism that makes DIP possible without global state. |
 
-![After Dependency Inversion Diagram]({{ "/assets/images/dip-after.png" | relative_url }})
+<p align="center">
+  <img src="{{ "/assets/images/dip-after.png" | relative_url }}" alt="After Dependency Inversion Diagram" />
+</p>
 
 ---
 
