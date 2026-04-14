@@ -86,8 +86,6 @@ The high-level module defines an abstract interface and retains lexical ownershi
 
 This directional opposition of lexical imports versus runtime execution is the precise definition of "inversion".
 
-![After Dependency Inversion Diagram]({{ "/assets/images/dip-after.png" | relative_url }})
-
 This mechanism is often conflated with sibling concepts:
 
 | Concept | Definition |
@@ -95,6 +93,8 @@ This mechanism is often conflated with sibling concepts:
 | DIP | A static architectural rule concerning the directionality of lexical dependencies. Achieved by ensuring the interface is owned by the calling layer. |
 | IoC | A behavioral pattern where framework code encapsulates the main execution loop, invoking user code via callbacks. It dictates who owns the execution context. |
 | DI | A parameter-passing technique where instantiated objects are provided to an environment rather than constructed within it. It is the runtime mechanism that makes DIP possible without global state. |
+
+![After Dependency Inversion Diagram]({{ "/assets/images/dip-after.png" | relative_url }})
 
 ---
 
@@ -105,3 +105,5 @@ The primary utility of this structural constraint is bounding the propagation of
 High-level policy logic describes fundamental domain rules and is inherently stable. Detail logic, conversely, deals with external boundaries (filesystems, network protocols) and requires constant churn as infrastructure shifts.
 
 By inverting the lexical dependency, the policy layer becomes a closed system. The detail layer can be entirely rewritten or swapped without altering a single instruction in the policy layer.
+
+---
